@@ -52,6 +52,7 @@ genesets_2016 <- read_excel(paste0(DATA_DIR, '2016 Table S2.xlsx'), sheet = "S2B
 
 data(c2BroadSets)
 c2BroadSets
+length(names(c2BroadSets))
 
 
 # https://www.biostars.org/p/242157/
@@ -67,6 +68,7 @@ melanoma_es <- inner_join(anno_df, fpkm_df, by = c('SYMBOL' = 'Gene')) %>%
   column_to_rownames('ENTREZID') %>%
   as.matrix() %>%
   gsva(c2BroadSets, min.sz=10, max.sz=500, verbose=TRUE)
+dim(melanoma_es)
 
 # check
 all(colnames(melanoma_es) %in% rownames(pt_info))
