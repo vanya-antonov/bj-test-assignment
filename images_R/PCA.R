@@ -65,8 +65,9 @@ ggplot(gg_df_2016) +
   # https://stackoverflow.com/a/15625149/310453
   geom_text(aes(label=ifelse(PC2>100, as.character(ID), '')), hjust=-0.2, vjust=0) +
   ggtitle('Hugo et al, 2016') +
-  theme_bw()
-ggsave('PCA.2016.pdf', path = OUT_DIR)
+  theme_bw() +
+  theme(legend.position="bottom")
+ggsave('PCA.2016.pdf', path = OUT_DIR, width = 4, height = 5)
 
 
 ###
@@ -104,8 +105,9 @@ ggplot(gg_df_2017) +
   # https://stackoverflow.com/a/15625149/310453
   geom_text(aes(label=ifelse(PC2>100, as.character(ID), '')), hjust=-0.2, vjust=0) +
   ggtitle('Garcia-Diaz et al, 2017') +
-  theme_bw()
-ggsave('PCA.2017.pdf', path = OUT_DIR)
+  theme_bw() +
+  theme(legend.position="bottom")
+ggsave('PCA.2017.pdf', path = OUT_DIR, width = 4, height = 5)
 
 
 
@@ -149,6 +151,8 @@ gg_df_16_17 <- as.data.frame(ptPCA_16_17$x[,1:2]) %>%
 ggplot(gg_df_16_17) +
   aes(x = PC1, y = PC2, col = Response, shape = Article, size = Article) +
   geom_point() +
+  ggtitle('Samples from two studies together') +
+  # http://www.sthda.com/english/wiki/ggplot2-point-shapes
   scale_shape_manual(values=c(2, 20)) +
   scale_size_manual(values=c(4, 2)) +
   theme_bw()
